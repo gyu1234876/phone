@@ -120,28 +120,25 @@ background-repeat: no-repeat;
       <div class="dynamic-island"></div>
 
       <section class="lock" id="lock" onclick="unlock()">
-        <div class="date">10월 23일 금요일</div>
-        <div class="clock" id="clock">9:41</div>
-        <div class="unlock">탭해서 잠금 해제 ↑</div>
+        <div class="date">7월 23일 목요일</div>
+        <div class="clock" id="clock">09:13</div>
+        <div class="unlock">탭해서 잠금 해제</div>
       </section>
 
       <section class="home" id="home">
-        <div class="welcome">오늘도 좋은 하루 ✨</div>
+        <div class="welcome">D+123</div>
         <div class="apps">
-          <button class="app-button" onclick="openApp('photos')"><div class="app-icon">🌸</div>사진</button>
+          <button class="app-button" onclick="openApp('photos')"><div class="app-icon">📷</div>사진</button>
           <button class="app-button" onclick="openApp('notes')"><div class="app-icon">📝</div>메모</button>
           <button class="app-button" onclick="openApp('messages')"><div class="app-icon">💬</div>메시지</button>
           <button class="app-button" onclick="openApp('phoneapp')"><div class="app-icon">📞</div>전화</button>
           <button class="app-button" onclick="openApp('settings')"><div class="app-icon">⚙️</div>설정</button>
-          <button class="app-button" onclick="openApp('music')"><div class="app-icon">🎵</div>음악</button>
           <button class="app-button" onclick="openApp('calendar')"><div class="app-icon">📅</div>캘린더</button>
-          <button class="app-button" onclick="openApp('about')"><div class="app-icon">💗</div>소개</button>
         </div>
         <div class="dock">
           <button class="app-button" onclick="openApp('phoneapp')"><div class="app-icon">📞</div></button>
           <button class="app-button" onclick="openApp('messages')"><div class="app-icon">💬</div></button>
-          <button class="app-button" onclick="openApp('photos')"><div class="app-icon">🌸</div></button>
-          <button class="app-button" onclick="openApp('music')"><div class="app-icon">🎵</div></button>
+          <button class="app-button" onclick="openApp('photos')"><div class="app-icon">📷</div></button>
         </div>
       </section>
 
@@ -152,7 +149,7 @@ background-repeat: no-repeat;
       <div class="homebar" onclick="goHome()"></div>
     </div>
   </div>
-  <div class="hint">화면을 눌러 잠금을 해제해 보세요 ♡</div>
+  <div class="hint">화면을 눌러 잠금을 해제하세요</div>
 </div>
 
 <script>
@@ -174,14 +171,25 @@ function openApp(name) {
   app.style.display = 'block';
 
   const pages = {
-    notes: `<h2>📝 메모</h2><textarea placeholder="오늘의 생각을 적어 봐..."></textarea>`,
-    messages: `<h2>메시지</h2><div class="message">오늘 뭐 해? 💗</div><div id="chat"></div><input id="msg" placeholder="iMessage" onkeydown="if(event.key==='Enter')sendMessage()">`,
-    photos: `<h2>사진</h2><p>나의 작은 갤러리 🌷</p><div class="photos">${Array.from({length:12},(_,i)=>`<div class="photo" style="background:hsl(${190+i*17} 55% ${75-i%3*7}%)"></div>`).join('')}</div>`,
-    phoneapp: `<h2>📞 전화</h2><p>즐겨찾기</p><div class="message">엄마 ❤️</div><div class="message">친구 🫧</div><p>이 화면은 시뮬레이션이야.</p>`,
-    settings: `<h2>⚙️ 설정</h2><div class="message">✈️ 비행기 모드</div><div class="message">📶 Wi-Fi</div><div class="message">🔔 알림</div><div class="message">🌙 디스플레이</div>`,
-    music: `<h2>🎵 음악</h2><div style="text-align:center;padding:35px 0;font-size:70px">🎧</div><p style="text-align:center">나만의 플레이리스트</p><p style="text-align:center">♪ 좋아하는 노래를 상상해 봐 ♪</p>`,
-    calendar: `<h2>📅 캘린더</h2><p>10월의 기록</p><div class="message">23일 · 오늘의 하루 ✨</div><div class="message">내일은 어떤 일이 있을까?</div>`,
-    about: `<h2>💗 About</h2><p>나만의 작은 아이폰 세계</p><p>이 웹사이트는 HTML, CSS, JavaScript로 만들었어.</p><p>앞으로 원하는 앱과 디자인을 추가할 수 있어!</p>`
+    notes: `<h2>메모</h2><textarea placeholder="..."></textarea>`,
+    messages: `<h2>메시지</h2><div class="message">나대일 교수님: 계선생님, 이따 잠깐 볼까요?</div><div id="chat"></div><input id="msg" placeholder="iMessage" onkeydown="if(event.key==='Enter')sendMessage()">`,
+    photos: `<h2>사진</h2><p>나의 갤러리</p><div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;">${[
+'1792749392316.jpg',
+'1792749398738.jpg',
+'1792749401869.jpg',
+'1792749405047.png',
+'1792749496381.jpg',
+'1ec46d0a9da62938fca5d75446ff6ca2.jpg',
+'Screenshot_20261023_183311_Instagram.jpg',
+'Screenshot_20261023_183328_Instagram.jpg',
+'Screenshot_20261023_184550_X.jpg',
+'IMG_7663b394-ff6e-485e-a002-181ca1de5579.jpg',
+'e8dff51ed23dcaa83c22466dbfc2d45f.jpg',
+'b32b1f4553dca8fe04887837bbf3b43c.jpg'
+].map(src => `<img src="${src}" alt="갤러리 사진" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;">`).join('')}</div>`,
+    phoneapp: `<h2>📞 전화</h2><p>즐겨찾기</p><div class="message">나대일 교수님♥︎</div><div class="message">조원진 교수님</div><p>부재중 0통</p>`,
+    settings: `<h2>⚙️ 설정</h2><div class="message">✈️ 비행기 모드</div><div class="message">📶 Wi-Fi</div><div class="message">알림</div><div class="message">디스플레이</div>`,
+    calendar: `<h2>📅 캘린더</h2><p>7월</p><div class="message">23일 · 나대일 생일</div><div class="message">25일 · 데이트</div>`,
   };
   content.innerHTML = pages[name] || '<h2>앱</h2>';
 }
