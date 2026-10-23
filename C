@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My iPhone</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0; min-height: 100vh; display: flex;
+  justify-content: center; align-items: center;
+  background: linear-gradient(135deg,#d9c8ff,#f8dce8,#d5e8ff);
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #222;
+}
+.phone {
+  width: min(350px, 94vw);
+  height: min(700px, 90dvh);
+  min-height: 500px;
+  border: 9px solid #202020; border-radius: 46px;
+  overflow: hidden; position: relative;
+  background: #dce5fa;
+  box-shadow: 0 25px 60px #3334;
+}
+.screen {
+  height: 100%; position: relative; overflow: hidden;
+  background: linear-gradient(160deg,#a9c8f4,#e9c9e6 60%,#f5d9cb);
+}
+.status {
+  height: 38px; padding: 12px 25px 0;
+  display: flex; justify-content: space-between;
+  font-size: 12px; font-weight: 700;
+}
+.dynamic-island {
+  position: absolute; top: 8px; left: 50%;
+  transform: translateX(-50%);
+  width: 90px; height: 23px; border-radius: 20px;
+  background: #111;
+}
+.lock, .home, .app {
+  position: absolute; inset: 38px 0 0;
+}
+.lock {
+  text-align: center; color: white; cursor: pointer;
+  text-shadow: 0 2px 12px #5555;
+  padding-top: 65px;
+}
+.date { font-size: 15px; }
+.clock { font-size: 72px; font-weight: 200; letter-spacing: -4px; }
+.unlock { margin-top: 190px; font-size: 13px; }
+.home { display: none; padding: 20px 17px 40px; }
+.welcome { color: white; font-size: 13px; margin: 8px 4px 25px; }
+.apps {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 24px 8px;
+}
+.app-button {
+  padding: 0; border: 0; background: none;
+  color: white; font-size: 11px; cursor: pointer;
+  text-shadow: 0 1px 5px #5558;
+}
+.app-icon {
+  width: 53px; height: 53px; border-radius: 15px;
+  margin: 0 auto 6px; display: grid; place-items: center;
+  background: #ffffffd9; font-size: 27px;
+  box-shadow: 0 3px 8px #5552;
+}
+.dock {
+  position: absolute; bottom: 15px; left: 12px; right: 12px;
+  height: 82px; border-radius: 25px;
+  background: #ffffff65; display: flex;
+  align-items: center; justify-content: space-evenly;
+}
+.dock .app-icon { margin: 0; }
+.app {
+  display: none; background: #f8f8fa; color: #222;
+  padding: 15px 17px 35px; overflow-y: auto;
+}
+.app h2 { font-size: 26px; margin: 28px 0 20px; }
+.back {
+  border: 0; background: #e9e9ed; border-radius: 20px;
+  padding: 9px 14px; cursor: pointer;
+}
+.app textarea {
+  width: 100%; min-height: 250px; resize: vertical;
+  border: 0; outline: none; background: transparent;
+  font: inherit; line-height: 1.7;
+}
+.message {
+  padding: 11px 14px; border-radius: 18px;
+  background: #e5e5ea; margin: 14px 0; width: fit-content;
+}
+.message.mine { background: #39b95a; color: white; margin-left: auto; }
+.app input {
+  width: 100%; padding: 12px; border: 1px solid #ddd;
+  border-radius: 18px; margin-top: 12px; font: inherit;
+}
+.photos { display: grid; grid-template-columns: repeat(3,1fr); gap: 5px; }
+.photo { aspect-ratio: 1; border-radius: 7px; background: linear-gradient(140deg,#b7d9ed,#e7bdd8,#f2d4ae); }
+.homebar {
+  position: absolute; bottom: 7px; left: 50%;
+  transform: translateX(-50%); width: 105px;
+  height: 4px; border-radius: 5px; background: #222;
+  z-index: 10; cursor: pointer;
+}
+.hint { text-align: center; font-size: 12px; color: #555; margin-top: 18px; }
+</style>
+</head>
+<body>
+<div>
+  <div class="phone">
+    <div class="screen">
+      <div class="status">
+        <span>9:41</span><span>● ● ▰</span>
+      </div>
+      <div class="dynamic-island"></div>
+
+      <section class="lock" id="lock" onclick="unlock()">
+        <div class="date">10월 23일 금요일</div>
+        <div class="clock" id="clock">9:41</div>
+        <div class="unlock">탭해서 잠금 해제 ↑</div>
+      </section>
+
+      <section class="home" id="home">
+        <div class="welcome">오늘도 좋은 하루 ✨</div>
+        <div class="apps">
+          <button class="app-button" onclick="openApp('photos')"><div class="app-icon">🌸</div>사진</button>
+          <button class="app-button" onclick="openApp('notes')"><div class="app-icon">📝</div>메모</button>
+          <button class="app-button" onclick="openApp('messages')"><div class="app-icon">💬</div>메시지</button>
+          <button class="app-button" onclick="openApp('phoneapp')"><div class="app-icon">📞</div>전화</button>
+          <button class="app-button" onclick="openApp('settings')"><div class="app-icon">⚙️</div>설정</button>
+          <button class="app-button" onclick="openApp('music')"><div class="app-icon">🎵</div>음악</button>
+          <button class="app-button" onclick="openApp('calendar')"><div class="app-icon">📅</div>캘린더</button>
+          <button class="app-button" onclick="openApp('about')"><div class="app-icon">💗</div>소개</button>
+        </div>
+        <div class="dock">
+          <button class="app-button" onclick="openApp('phoneapp')"><div class="app-icon">📞</div></button>
+          <button class="app-button" onclick="openApp('messages')"><div class="app-icon">💬</div></button>
+          <button class="app-button" onclick="openApp('photos')"><div class="app-icon">🌸</div></button>
+          <button class="app-button" onclick="openApp('music')"><div class="app-icon">🎵</div></button>
+        </div>
+      </section>
+
+      <section class="app" id="app">
+        <button class="back" onclick="goHome()">‹ 홈 화면</button>
+        <div id="appContent"></div>
+      </section>
+      <div class="homebar" onclick="goHome()"></div>
+    </div>
+  </div>
+  <div class="hint">화면을 눌러 잠금을 해제해 보세요 ♡</div>
+</div>
+
+<script>
+const lock = document.getElementById('lock');
+const home = document.getElementById('home');
+const app = document.getElementById('app');
+const content = document.getElementById('appContent');
+
+function unlock() {
+  lock.style.display = 'none';
+  home.style.display = 'block';
+}
+function goHome() {
+  app.style.display = 'none';
+  home.style.display = 'block';
+}
+function openApp(name) {
+  home.style.display = 'none';
+  app.style.display = 'block';
+
+  const pages = {
+    notes: `<h2>📝 메모</h2><textarea placeholder="오늘의 생각을 적어 봐..."></textarea>`,
+    messages: `<h2>메시지</h2><div class="message">오늘 뭐 해? 💗</div><div id="chat"></div><input id="msg" placeholder="iMessage" onkeydown="if(event.key==='Enter')sendMessage()">`,
+    photos: `<h2>사진</h2><p>나의 작은 갤러리 🌷</p><div class="photos">${Array.from({length:12},(_,i)=>`<div class="photo" style="background:hsl(${190+i*17} 55% ${75-i%3*7}%)"></div>`).join('')}</div>`,
+    phoneapp: `<h2>📞 전화</h2><p>즐겨찾기</p><div class="message">엄마 ❤️</div><div class="message">친구 🫧</div><p>이 화면은 시뮬레이션이야.</p>`,
+    settings: `<h2>⚙️ 설정</h2><div class="message">✈️ 비행기 모드</div><div class="message">📶 Wi-Fi</div><div class="message">🔔 알림</div><div class="message">🌙 디스플레이</div>`,
+    music: `<h2>🎵 음악</h2><div style="text-align:center;padding:35px 0;font-size:70px">🎧</div><p style="text-align:center">나만의 플레이리스트</p><p style="text-align:center">♪ 좋아하는 노래를 상상해 봐 ♪</p>`,
+    calendar: `<h2>📅 캘린더</h2><p>10월의 기록</p><div class="message">23일 · 오늘의 하루 ✨</div><div class="message">내일은 어떤 일이 있을까?</div>`,
+    about: `<h2>💗 About</h2><p>나만의 작은 아이폰 세계</p><p>이 웹사이트는 HTML, CSS, JavaScript로 만들었어.</p><p>앞으로 원하는 앱과 디자인을 추가할 수 있어!</p>`
+  };
+  content.innerHTML = pages[name] || '<h2>앱</h2>';
+}
+function sendMessage() {
+  const input = document.getElementById('msg');
+  if (!input || !input.value.trim()) return;
+  const chat = document.getElementById('chat');
+  const bubble = document.createElement('div');
+  bubble.className = 'message mine';
+  bubble.textContent = input.value;
+  chat.appendChild(bubble);
+  input.value = '';
+}
+</script>
+</body>
+</html>
