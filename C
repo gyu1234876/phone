@@ -172,7 +172,7 @@ function openApp(name) {
 
   const pages = {
     notes: `<h2>메모</h2><textarea placeholder="..."></textarea>`,
-    messages: `<h2>메시지</h2><div class="message">나대일 교수님: 계선생님, 이따 잠깐 볼까요?</div><div id="chat"></div><input id="msg" placeholder="iMessage" onkeydown="if(event.key==='Enter')sendMessage()">`,
+    messages: `<h2>메시지</h2><div class="message">나대일 교수님♥︎: 계선생님, 이따 잠깐 볼까요? 전화 왜 안 받아요..</div><div id="chat"></div><input id="msg" placeholder="iMessage" onkeydown="if(event.key==='Enter')sendMessage()">`,
     photos: `<h2>사진</h2><p>나의 갤러리</p><div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;">${[
 '1792749392316.jpg',
 '1792749398738.jpg',
@@ -187,7 +187,7 @@ function openApp(name) {
 'e8dff51ed23dcaa83c22466dbfc2d45f.jpg',
 'b32b1f4553dca8fe04887837bbf3b43c.jpg'
 ].map(src => `<img src="${src}" alt="갤러리 사진" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;">`).join('')}</div>`,
-    phoneapp: `<h2>📞 전화</h2><p>즐겨찾기</p><div class="message">나대일 교수님♥︎</div><div class="message">조원진 교수님</div><p>부재중 0통</p>`,
+    phoneapp: `<h2>📞 전화</h2><p>즐겨찾기</p><div class="message">나대일 교수님♥︎</div><div class="message">조원진 교수님</div><p>부재중 11통</p>`,
     settings: `<h2>⚙️ 설정</h2><div class="message">✈️ 비행기 모드</div><div class="message">📶 Wi-Fi</div><div class="message">알림</div><div class="message">디스플레이</div>`,
     calendar: `<h2>📅 캘린더</h2><p>7월</p><div class="message">23일 · 나대일 생일</div><div class="message">25일 · 데이트</div>`,
   };
